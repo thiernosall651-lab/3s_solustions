@@ -104,11 +104,11 @@ export function WhatsAppAssistant() {
           </div>
           <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4" aria-live="polite">
             <Bot>{a.q1}</Bot>
-            {need ? <Me>{a.needs[need]}</Me> : <Choices opts={a.needs} onPick={setNeed} />}
+            {need ? <Me>{a.needs[need]}</Me> : <Choices opts={a.needs} onPick={(k) => setNeed(k as Need)} />}
             {need && <Bot>{a.q2}</Bot>}
-            {need && (country ? <Me>{a.countries[country]}</Me> : <Choices opts={a.countries} onPick={setCountry} />)}
+            {need && (country ? <Me>{a.countries[country]}</Me> : <Choices opts={a.countries} onPick={(k) => setCountry(k as Country)} />)}
             {country && <Bot>{a.q3}</Bot>}
-            {country && (line ? <Me>{a.lines[line]}</Me> : <Choices opts={a.lines} onPick={(l) => { setLine(l); setError(false); }} />)}
+            {country && (line ? <Me>{a.lines[line]}</Me> : <Choices opts={a.lines} onPick={(l) => { setLine(l as WaKey); setError(false); }} />)}
             {line && need && country && (
               <div className="rounded-2xl border border-border bg-background p-4 text-sm">
                 <p className="mb-2 font-display font-semibold">{a.summary}</p>
