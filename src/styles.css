@@ -101,7 +101,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.6 0.21 258);
   --whatsapp: oklch(0.72 0.19 150);
-  --whatsapp-foreground: oklch(0.99 0 0);
+  --whatsapp-foreground: oklch(0.18 0.04 255);
   --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
