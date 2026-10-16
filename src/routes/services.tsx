@@ -8,7 +8,7 @@ export const Route = createFileRoute("/services")({
   component: Services,
 });
 
-const icons = [Globe, LayoutDashboard, Bot];
+const icons = [Globe, LayoutDashboard, Bot] as const;
 
 function Services() {
   const { t } = useLang();
@@ -18,7 +18,7 @@ function Services() {
       <PageHero title={t.services.title} intro={t.services.intro} />
       <section className="container-site grid gap-6">
         {t.services.items.map((s, i) => {
-          const Icon = icons[i];
+          const Icon = icons[i] ?? Globe;
           return (
             <Reveal key={s.t}>
               <article className="card-lift grid gap-6 md:grid-cols-[auto_1fr_auto] md:items-center">

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-export const serviceIcons = [Globe, LayoutDashboard, Bot];
+const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
 
 function Index() {
   const { t } = useLang();
@@ -38,7 +38,7 @@ function Index() {
         <Reveal><h2 className="section-title">{t.home.servicesTitle}</h2></Reveal>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {t.services.items.map((s, i) => {
-            const Icon = serviceIcons[i];
+            const Icon = serviceIcons[i] ?? Globe;
             return (
               <Reveal key={s.t}>
                 <Link to="/services" className="card-lift block h-full">
