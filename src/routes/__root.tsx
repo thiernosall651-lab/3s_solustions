@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "@/lib/i18n";
 import { Header, Footer } from "@/components/site/Layout";
+import { WhatsAppAssistant } from "@/components/site/WhatsAppAssistant";
 
 function NotFoundComponent() {
   return (
@@ -127,6 +128,7 @@ function RootComponent() {
           <Outlet />
         </main>
         <Footer />
+        <WhatsAppAssistant />
       </LanguageProvider>
     </QueryClientProvider>
   );
