@@ -14,7 +14,7 @@ function WaIcon({ className = "" }: { className?: string }) {
 }
 
 export function WhatsAppAssistant() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const a = t.assistant;
   const [open, setOpen] = useState(false);
   const [need, setNeed] = useState<Need>();
