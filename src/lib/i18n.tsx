@@ -45,6 +45,17 @@ const fr = {
     intro: "Des solutions digitales concrètes, pensées pour répondre aux besoins réels de votre entreprise.",
     needLabel: "Le besoin",
     quote: "Demander un devis",
+    personal: {
+      eyebrow: "PARTICULIERS",
+      title: "Offres pour les particuliers",
+      intro: "Freelances, créateurs, chercheurs d'emploi ou porteurs de projet : obtenez une présence en ligne simple et professionnelle, à votre nom.",
+      cta: "Demander un devis",
+      items: [
+        { t: "Portfolio", d: "Présentez vos travaux, projets et compétences sur une page claire, facile à partager avec vos clients ou recruteurs." },
+        { t: "CV en ligne", d: "Une version moderne de votre CV, en ligne, avec votre parcours, vos compétences et un lien de contact direct." },
+        { t: "Site personnel", d: "Un site pour votre projet personnel ou professionnel, votre activité de freelance ou vos contenus." },
+      ],
+    },
     items: [
       { t: "Sites web et e-commerce", short: "Sites vitrines, sites d'entreprise et boutiques en ligne.", need: "Être visible en ligne, inspirer confiance et permettre à vos clients de vous trouver ou d'acheter facilement.", d: "Nous créons des sites professionnels, des sites d'entreprise et des boutiques en ligne rapides, adaptés au mobile et faciles à faire évoluer." },
       { t: "Applications métier et CRM sur mesure", short: "Outils sur mesure pour organiser et piloter votre activité.", need: "Centraliser vos clients, vos ventes et vos opérations au lieu de jongler entre carnets, tableurs et messages.", d: "Nous développons des applications métier, des CRM et des outils internes adaptés à votre façon de travailler." },
@@ -136,6 +147,17 @@ const en: Dict = {
     intro: "Practical digital solutions designed around the real needs of your business.",
     needLabel: "The need",
     quote: "Request a quote",
+    personal: {
+      eyebrow: "INDIVIDUALS",
+      title: "Offers for individuals",
+      intro: "Freelancers, creators, job seekers or project owners: get a simple, professional online presence of your own.",
+      cta: "Ask for a quote",
+      items: [
+        { t: "Portfolio", d: "Show your work, projects and skills on a clear page that is easy to share with clients or recruiters." },
+        { t: "Online CV", d: "A modern online version of your CV, with your experience, skills and a direct contact link." },
+        { t: "Personal website", d: "A site for your personal or professional project, your activity as a freelancer or your content." },
+      ],
+    },
     items: [
       { t: "Websites and e-commerce", short: "Showcase sites, business websites and online stores.", need: "Be visible online, build trust and make it easy for customers to find you or buy from you.", d: "We build professional websites, business websites and online stores that are fast, mobile-friendly and easy to grow." },
       { t: "Custom business apps and CRM", short: "Tailored tools to organize and run your business.", need: "Centralize your customers, sales and operations instead of juggling notebooks, spreadsheets and messages.", d: "We develop business applications, CRM systems and internal tools adapted to the way you work." },
