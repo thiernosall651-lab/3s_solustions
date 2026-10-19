@@ -15,3 +15,5 @@ describe("WhatsApp contact", () => {
     expect(buildWhatsAppUrl("sn", d, "fr")).toMatch(/^https:\/\/wa\.me\/221788240592\?text=/);
   });
 });
+
+import { dict } from "@/lib/i18n";
