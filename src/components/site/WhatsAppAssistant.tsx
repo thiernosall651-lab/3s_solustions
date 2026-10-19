@@ -4,6 +4,7 @@ import { CONTACTS, useLang, type WaKey } from "@/lib/i18n";
 
 type Need = "website" | "app" | "ai" | "other";
 type Country = "sn" | "ma" | "eu";
+type Profile = "business" | "individual";
 
 function WaIcon({ className = "" }: { className?: string }) {
   return (
@@ -17,6 +18,7 @@ export function WhatsAppAssistant() {
   const { t } = useLang();
   const a = t.assistant;
   const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState<Profile>();
   const [need, setNeed] = useState<Need>();
   const [country, setCountry] = useState<Country>();
   const [line, setLine] = useState<WaKey>();
@@ -40,9 +42,10 @@ export function WhatsAppAssistant() {
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ block: "end" });
-  }, [need, country, line]);
+  }, [profile, need, country, line]);
 
   const reset = () => {
+    setProfile(undefined);
     setNeed(undefined);
     setCountry(undefined);
     setLine(undefined);
@@ -50,8 +53,8 @@ export function WhatsAppAssistant() {
   };
 
   const go = () => {
-    if (!need || !country || !line) return setError(true);
-    const text = a.msg(a.needs[need], a.countries[country], a.lines[line]);
+    if (!profile || !need || !country || !line) return setError(true);
+    const text = a.msg(a.profiles[profile], a.needs[need], a.countries[country], a.lines[line]);
     window.open(`${CONTACTS[line].url}?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
   };
 
@@ -103,16 +106,19 @@ export function WhatsAppAssistant() {
             </button>
           </div>
           <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4" aria-live="polite">
-            <Bot>{a.q1}</Bot>
-            {need ? <Me>{a.needs[need]}</Me> : <Choices opts={a.needs} onPick={(k) => setNeed(k as Need)} />}
+            <Bot>{a.q0}</Bot>
+            {profile ? <Me>{a.profiles[profile]}</Me> : <Choices opts={a.profiles} onPick={(k) => setProfile(k as Profile)} />}
+            {profile && <Bot>{a.q1}</Bot>}
+            {profile && (need ? <Me>{a.needs[need]}</Me> : <Choices opts={a.needs} onPick={(k) => setNeed(k as Need)} />)}
             {need && <Bot>{a.q2}</Bot>}
             {need && (country ? <Me>{a.countries[country]}</Me> : <Choices opts={a.countries} onPick={(k) => setCountry(k as Country)} />)}
             {country && <Bot>{a.q3}</Bot>}
             {country && (line ? <Me>{a.lines[line]}</Me> : <Choices opts={a.lines} onPick={(l) => { setLine(l as WaKey); setError(false); }} />)}
-            {line && need && country && (
+            {line && need && country && profile && (
               <div className="rounded-2xl border border-border bg-background p-4 text-sm">
                 <p className="mb-2 font-display font-semibold">{a.summary}</p>
                 <dl className="space-y-1">
+                  <div><dt className="inline text-muted-foreground">{a.profile} : </dt><dd className="inline">{a.profiles[profile]}</dd></div>
                   <div><dt className="inline text-muted-foreground">{a.need} : </dt><dd className="inline">{a.needs[need]}</dd></div>
                   <div><dt className="inline text-muted-foreground">{a.country} : </dt><dd className="inline">{a.countries[country]}</dd></div>
                   <div><dt className="inline text-muted-foreground">{a.contact} : </dt><dd className="inline">{a.lines[line]} ({CONTACTS[line].label})</dd></div>

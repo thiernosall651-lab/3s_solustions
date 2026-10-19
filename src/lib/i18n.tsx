@@ -102,14 +102,15 @@ const fr = {
   waDefault: "Bonjour 3S Solutions, je souhaite parler de mon projet.",
   assistant: {
     open: "Parler à 3S Solutions", close: "Fermer", title: "3S Solutions",
-    q1: "Bonjour ! Que souhaitez-vous ?", q2: "Dans quel pays êtes-vous ?", q3: "Avec qui voulez-vous échanger ?",
+    q0: "Bonjour ! Vous nous contactez en tant qu'entreprise ou particulier ?", profiles: { business: "Entreprise", individual: "Particulier" },
+    q1: "Que souhaitez-vous ?", q2: "Dans quel pays êtes-vous ?", q3: "Avec qui voulez-vous échanger ?",
     needs: { website: "Site web", app: "Application ou CRM", ai: "Automatisation IA", other: "Autre" },
     countries: { sn: "Sénégal", ma: "Maroc", eu: "Europe" },
     lines: { ma1: "Maroc ligne 1", ma2: "Maroc ligne 2", sn: "Sénégal" },
-    summary: "Récapitulatif", need: "Besoin", country: "Pays", contact: "Contact WhatsApp",
+    summary: "Récapitulatif", profile: "Profil", need: "Besoin", country: "Pays", contact: "Contact WhatsApp",
     cont: "Continuer sur WhatsApp", restart: "Recommencer",
     error: "Veuillez compléter toutes les étapes avant de continuer.",
-    msg: (n: string, c: string, l: string) => `Bonjour 3S Solutions ! Je souhaite discuter de : ${n}. Mon pays : ${c}. Contact choisi : ${l}.`,
+    msg: (p: string, n: string, c: string, l: string) => `Bonjour 3S Solutions ! Je suis : ${p}. Je souhaite discuter de : ${n}. Mon pays : ${c}. Contact choisi : ${l}.`,
   },
 };
 
@@ -204,14 +205,15 @@ const en: Dict = {
   waDefault: "Hello 3S Solutions, I'd like to discuss my project.",
   assistant: {
     open: "Talk to 3S Solutions", close: "Close", title: "3S Solutions",
-    q1: "Hello! What are you looking for?", q2: "Which country are you in?", q3: "Who would you like to talk to?",
+    q0: "Hello! Are you contacting us as a business or as an individual?", profiles: { business: "Business", individual: "Individual" },
+    q1: "What are you looking for?", q2: "Which country are you in?", q3: "Who would you like to talk to?",
     needs: { website: "Website", app: "Application or CRM", ai: "AI automation", other: "Other" },
     countries: { sn: "Senegal", ma: "Morocco", eu: "Europe" },
     lines: { ma1: "Morocco line 1", ma2: "Morocco line 2", sn: "Senegal" },
-    summary: "Summary", need: "Need", country: "Country", contact: "WhatsApp contact",
+    summary: "Summary", profile: "Profile", need: "Need", country: "Country", contact: "WhatsApp contact",
     cont: "Continue on WhatsApp", restart: "Start over",
     error: "Please complete all steps before continuing.",
-    msg: (n: string, c: string, l: string) => `Hello 3S Solutions! I'd like to discuss: ${n}. My country: ${c}. Chosen contact: ${l}.`,
+    msg: (p: string, n: string, c: string, l: string) => `Hello 3S Solutions! I am: ${p}. I'd like to discuss: ${n}. My country: ${c}. Chosen contact: ${l}.`,
   },
 };
 

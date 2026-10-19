@@ -15,3 +15,16 @@ describe("WhatsApp contact", () => {
     expect(buildWhatsAppUrl("sn", d, "fr")).toMatch(/^https:\/\/wa\.me\/221788240592\?text=/);
   });
 });
+
+import { translations } from "@/lib/i18n";
+
+describe("WhatsApp assistant profile", () => {
+  it("French message includes Particulier", () => {
+    const a = translations.fr.assistant;
+    expect(a.msg(a.profiles.individual, "Site web", "Sénégal", "Sénégal")).toContain("Je suis : Particulier");
+  });
+  it("English message includes Business", () => {
+    const a = translations.en.assistant;
+    expect(a.msg(a.profiles.business, "Website", "Morocco", "Morocco line 1")).toContain("I am: Business");
+  });
+});
