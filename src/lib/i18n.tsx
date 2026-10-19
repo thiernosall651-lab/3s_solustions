@@ -16,11 +16,11 @@ export type WaKey = "ma1" | "ma2" | "sn";
 const fr = {
   nav: { home: "Accueil", services: "Services", portfolio: "Réalisations", about: "À propos", contact: "Contact", cta: "Parler de mon projet", menu: "Menu" },
   meta: {
-    home: { title: "3S Solutions — Sites web, CRM et IA au Sénégal, Maroc et Europe", desc: "Agence digitale : sites web, applications métier, CRM sur mesure, IA et automatisation pour les entreprises du Sénégal, du Maroc et d'Europe." },
-    services: { title: "Services — Sites web, CRM et IA | 3S Solutions", desc: "Sites web et e-commerce, applications métier et CRM sur mesure, IA et automatisation : découvrez les services de 3S Solutions." },
-    portfolio: { title: "Réalisations — Projets web | 3S Solutions", desc: "Découvrez des exemples de projets web réalisés par 3S Solutions au Sénégal et au Maroc." },
+    home: { title: "3S Solutions — Agence web à Dakar et Casablanca : sites, CRM et IA", desc: "Agence digitale : sites web, applications métier, CRM sur mesure, IA et automatisation pour les entreprises du Sénégal, du Maroc et d'Europe." },
+    services: { title: "Services — Sites web, CRM et IA à Dakar et Casablanca | 3S Solutions", desc: "Sites web et e-commerce, applications métier et CRM sur mesure, IA et automatisation : découvrez les services de 3S Solutions." },
+    portfolio: { title: "Réalisations — Projets web à Dakar et Casablanca | 3S Solutions", desc: "Découvrez des exemples de projets web réalisés par 3S Solutions au Sénégal et au Maroc." },
     about: { title: "À propos — Agence digitale Dakar & Casablanca | 3S Solutions", desc: "3S Solutions, agence digitale entre Dakar et Casablanca, accompagne les entreprises du Sénégal, du Maroc et d'Europe." },
-    contact: { title: "Contact — Parlons de votre projet | 3S Solutions", desc: "Contactez 3S Solutions par WhatsApp ou e-mail pour votre site web, CRM ou projet d'automatisation IA." },
+    contact: { title: "Contact — Agence web Dakar et Casablanca | 3S Solutions", desc: "Contactez 3S Solutions par WhatsApp ou e-mail pour votre site web, CRM ou projet d'automatisation IA." },
   },
   home: {
     location: "SÉNÉGAL · MAROC · EUROPE",
@@ -119,11 +119,11 @@ type Dict = typeof fr;
 const en: Dict = {
   nav: { home: "Home", services: "Services", portfolio: "Portfolio", about: "About", contact: "Contact", cta: "Discuss my project", menu: "Menu" },
   meta: {
-    home: { title: "3S Solutions — Websites, CRM & AI in Senegal, Morocco and Europe", desc: "Digital agency: websites, business apps, custom CRM, AI and automation for businesses in Senegal, Morocco and Europe." },
-    services: { title: "Services — Websites, CRM & AI | 3S Solutions", desc: "Websites and e-commerce, custom business apps and CRM, AI and automation: explore 3S Solutions services." },
-    portfolio: { title: "Portfolio — Web projects | 3S Solutions", desc: "Explore examples of web projects by 3S Solutions in Senegal and Morocco." },
+    home: { title: "3S Solutions — Web agency in Dakar & Casablanca: websites, CRM & AI", desc: "Digital agency: websites, business apps, custom CRM, AI and automation for businesses in Senegal, Morocco and Europe." },
+    services: { title: "Services — Websites, CRM & AI in Dakar & Casablanca | 3S Solutions", desc: "Websites and e-commerce, custom business apps and CRM, AI and automation: explore 3S Solutions services." },
+    portfolio: { title: "Portfolio — Web projects in Dakar & Casablanca | 3S Solutions", desc: "Explore examples of web projects by 3S Solutions in Senegal and Morocco." },
     about: { title: "About — Digital agency Dakar & Casablanca | 3S Solutions", desc: "3S Solutions, a digital agency between Dakar and Casablanca, supports businesses in Senegal, Morocco and Europe." },
-    contact: { title: "Contact — Let's talk about your project | 3S Solutions", desc: "Contact 3S Solutions via WhatsApp or email for your website, CRM or AI automation project." },
+    contact: { title: "Contact — Web agency Dakar & Casablanca | 3S Solutions", desc: "Contact 3S Solutions via WhatsApp or email for your website, CRM or AI automation project." },
   },
   home: {
     location: "SENEGAL · MOROCCO · EUROPE",
