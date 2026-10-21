@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Menu, X, Mail, MessageCircle } from "lucide-react";
-import { CONTACTS, useLang } from "@/lib/i18n";
+import { Menu, X, Mail, MessageCircle, Instagram, Facebook } from "lucide-react";
+import { CONTACTS, SOCIALS, useLang } from "@/lib/i18n";
 import logo from "@/assets/logo-3s.png.asset.json";
 
 export function Brand() {
@@ -134,11 +134,36 @@ export function ContactList() {
   );
 }
 
-export function Socials() {
+function TikTokIcon({ className }: { className?: string }) {
   return (
-    <div className="flex gap-3 text-sm">
-      <a href={CONTACTS.tiktok} target="_blank" rel="noopener noreferrer" className="chip">TikTok</a>
-      <a href={CONTACTS.instagram} target="_blank" rel="noopener noreferrer" className="chip">Instagram</a>
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.4-2.47V9.67a5.73 5.73 0 0 0-.8-.06 5.68 5.68 0 0 0-5.69 5.69A5.68 5.68 0 0 0 9.86 21a5.68 5.68 0 0 0 5.68-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.3 4.3 0 0 1-3.24-1.48Z" />
+    </svg>
+  );
+}
+
+const socialIcons = { instagram: Instagram, tiktok: TikTokIcon, facebook: Facebook } as const;
+
+export function Socials() {
+  const { t } = useLang();
+  return (
+    <div className="flex flex-wrap gap-3 text-sm">
+      {SOCIALS.map((s) => {
+        const Icon = socialIcons[s.id];
+        return (
+          <a
+            key={s.id}
+            href={s.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="chip inline-flex items-center gap-2"
+            aria-label={`${s.label} — ${t.footer.follow}`}
+          >
+            <Icon className="size-4" />
+            {s.label}
+          </a>
+        );
+      })}
     </div>
   );
 }

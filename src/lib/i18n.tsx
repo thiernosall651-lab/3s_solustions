@@ -11,6 +11,13 @@ export const CONTACTS = {
   instagram: "https://www.instagram.com/3sw_growth",
 } as const;
 
+/** Réseaux sociaux affichés (pied de page, Contact, JSON-LD). Ajouter Facebook = une ligne :
+ *  { id: "facebook", label: "Facebook", url: "https://www.facebook.com/..." }, */
+export const SOCIALS = [
+  { id: "instagram", label: "Instagram", url: CONTACTS.instagram },
+  { id: "tiktok", label: "TikTok", url: CONTACTS.tiktok },
+] as const satisfies readonly { id: "instagram" | "tiktok" | "facebook"; label: string; url: string }[];
+
 export type WaKey = "ma1" | "ma2" | "sn";
 
 const fr = {
@@ -248,11 +255,24 @@ export function usePageMeta(page: keyof Dict["meta"]) {
     document.querySelector('meta[name="description"]')?.setAttribute("content", m.desc);
     document.querySelector('meta[property="og:title"]')?.setAttribute("content", m.title);
     document.querySelector('meta[property="og:description"]')?.setAttribute("content", m.desc);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", m.title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", m.desc);
   }, [t, page]);
 }
 
+export const SITE_URL = "https://s3s-solutions.lovable.app";
+
+const PAGE_PATHS: Record<keyof Dict["meta"], string> = {
+  home: "/",
+  services: "/services",
+  portfolio: "/realisations",
+  about: "/a-propos",
+  contact: "/contact",
+};
+
 export function pageHead(page: keyof Dict["meta"]) {
   const m = fr.meta[page];
+  const url = `${SITE_URL}${PAGE_PATHS[page]}`;
   return {
     meta: [
       { title: m.title },
@@ -260,8 +280,14 @@ export function pageHead(page: keyof Dict["meta"]) {
       { property: "og:title", content: m.title },
       { property: "og:description", content: m.desc },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: url },
+      { property: "og:locale", content: "fr_FR" },
+      { property: "og:locale:alternate", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: m.title },
+      { name: "twitter:description", content: m.desc },
     ],
+    links: [{ rel: "canonical", href: url }],
   };
 }
 
