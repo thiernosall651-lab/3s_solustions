@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { LanguageProvider } from "@/lib/i18n";
+import { CONTACTS, LanguageProvider, SITE_URL, SOCIALS } from "@/lib/i18n";
 import { Header, Footer } from "@/components/site/Layout";
 import { WhatsAppAssistant } from "@/components/site/WhatsAppAssistant";
 
@@ -88,6 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#071426" },
+      { name: "google-site-verification", content: "OXbmtrwqEk0uX2O39e_e81DahWkiNU6SMUOFDlBhUZg" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -95,6 +96,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Manrope:wght@400;500;600&display=swap" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "3S Solutions",
+          url: SITE_URL,
+          email: CONTACTS.email,
+          sameAs: SOCIALS.map((s) => s.url),
+          areaServed: [
+            { "@type": "Country", name: "Sénégal" },
+            { "@type": "Country", name: "Maroc" },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
