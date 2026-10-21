@@ -61,6 +61,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapXmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,6 +70,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapXmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
