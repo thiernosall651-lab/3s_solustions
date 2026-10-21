@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Menu, X, Mail, MessageCircle, Instagram, Facebook } from "lucide-react";
 import { CONTACTS, SOCIALS, useLang } from "@/lib/i18n";
-import logo from "@/assets/logo-3s.png.asset.json";
+const LOGO_SRC = "https://s3s-solutions.lovable.app/__l5e/assets-v1/b13ea4fc-7f76-4096-adaa-b64846e80b19/logo-3s.png";
 
 export function Brand() {
   return (
@@ -10,6 +10,43 @@ export function Brand() {
       3<span className="text-primary">S</span> Solutions
     </span>
   );
+}
+
+export function LogoImage({
+  className = "",
+  alt = "3S Solutions",
+  loading = "lazy",
+  variant = "hero",
+}: {
+  className?: string;
+  alt?: string;
+  loading?: "eager" | "lazy";
+  variant?: "hero" | "footer";
+}) {
+  const [failed, setFailed] = useState(false);
+  const compact = variant === "footer";
+
+  if (failed) {
+    return (
+      <div
+        role="img"
+        aria-label={alt}
+        className={`flex items-center justify-center overflow-hidden border border-border bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-center ${compact ? "min-h-16 p-3" : "aspect-[3/2] p-8"} ${className}`}
+      >
+        <div>
+          <div className={`${compact ? "text-3xl" : "text-6xl"} font-display font-bold tracking-tight text-white`}>
+            3<span className="text-primary">S</span>
+          </div>
+          <div className={`${compact ? "text-xs" : "text-xl"} mt-1 font-display font-bold tracking-[0.18em] text-white`}>
+            SOLUTIONS
+          </div>
+          {!compact && <div className="mt-3 text-xs uppercase tracking-[0.26em] text-cyan-200">Agence digitale</div>}
+        </div>
+      </div>
+    );
+  }
+
+  return <img src={LOGO_SRC} alt={alt} loading={loading} onError={() => setFailed(true)} className={className} />;
 }
 
 export function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -174,7 +211,7 @@ export function Footer() {
     <footer className="mt-24 border-t border-border bg-card">
       <div className="container-site grid gap-10 py-12 md:grid-cols-3">
         <div className="space-y-4">
-          <img src={logo.url} alt="3S Solutions" className="w-44 rounded-xl" loading="lazy" />
+          <LogoImage variant="footer" alt="3S Solutions" className="w-44 rounded-xl" loading="lazy" />
           <p className="text-sm text-muted-foreground">{t.footer.tagline}</p>
         </div>
         <div>

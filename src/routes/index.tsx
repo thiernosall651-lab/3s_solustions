@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, LayoutDashboard, Bot, ArrowRight } from "lucide-react";
 import { CONTACTS, pageHead, useLang, usePageMeta } from "@/lib/i18n";
-import { Reveal } from "@/components/site/Layout";
-import logo from "@/assets/logo-3s.png.asset.json";
+import { LogoImage, Reveal } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead("home"),
@@ -29,7 +28,7 @@ function Index() {
             </div>
           </Reveal>
           <Reveal>
-            <img src={logo.url} alt="3S Solutions — Agence digitale" className="w-full rounded-3xl border border-border shadow-glow" />
+            <LogoImage variant="hero" alt="3S Solutions — Agence digitale" loading="eager" className="aspect-[3/2] w-full rounded-3xl border border-border object-cover shadow-glow" />
           </Reveal>
         </div>
       </section>

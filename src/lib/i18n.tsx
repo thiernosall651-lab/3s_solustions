@@ -72,12 +72,13 @@ const fr = {
   },
   portfolio: {
     title: "Réalisations",
-    intro: "Quelques exemples de projets. Les captures d'écran seront ajoutées prochainement.",
-    placeholder: "Capture d'écran à ajouter",
-    demo: "Démonstration",
+    intro: "Découvrez deux sites en ligne qui illustrent notre travail : la réservation de logements et la beauté à Casablanca.",
+    online: "Site en ligne",
+    project: "Projet web",
+    viewSite: "Voir le site",
     items: [
-      { t: "Site d'entreprise — Sérigraphie", loc: "Sénégal", d: "Site web professionnel pour une entreprise de sérigraphie au Sénégal : présentation des services, réalisations et contact." },
-      { t: "Site web — Salon de beauté", loc: "Casablanca, Maroc", d: "Site web pour un salon de beauté à Casablanca : prestations, ambiance du salon et prise de contact." },
+      { t: "K2B Booking — Réservation de logements", loc: "Casablanca, Maroc", d: "Site de réservation de studios et d'appartements, conçu pour présenter les logements et faciliter les demandes de réservation.", url: "https://k2bbooking.com/", brand: "K2B BOOKING", previewTitle: "Réservez votre séjour", previewSubtitle: "Studios · Appartements" },
+      { t: "Teranga Beauty — Salon de beauté", loc: "Casablanca, Maroc", d: "Site professionnel présentant les prestations, la galerie du salon, les informations pratiques et la prise de rendez-vous.", url: "https://terangabeauty.net/", brand: "TERANGA BEAUTY", previewTitle: "Beauté & bien-être", previewSubtitle: "Coiffure · Soins · Rendez-vous" },
     ],
   },
   about: {
@@ -175,12 +176,13 @@ const en: Dict = {
   },
   portfolio: {
     title: "Portfolio",
-    intro: "A few project examples. Screenshots will be added soon.",
-    placeholder: "Screenshot to be added",
-    demo: "Demo",
+    intro: "Explore two live websites that showcase our work: property bookings and a beauty salon in Casablanca.",
+    online: "Live website",
+    project: "Web project",
+    viewSite: "Visit website",
     items: [
-      { t: "Business website — Screen printing", loc: "Senegal", d: "Professional website for a screen-printing company in Senegal: services, past work and contact." },
-      { t: "Website — Beauty salon", loc: "Casablanca, Morocco", d: "Website for a beauty salon in Casablanca: treatments, salon atmosphere and contact." },
+      { t: "K2B Booking — Accommodation bookings", loc: "Casablanca, Morocco", d: "A booking website for studios and apartments, designed to present listings and help visitors request a reservation.", url: "https://k2bbooking.com/", brand: "K2B BOOKING", previewTitle: "Book your stay", previewSubtitle: "Studios · Apartments" },
+      { t: "Teranga Beauty — Beauty salon", loc: "Casablanca, Morocco", d: "A professional salon website featuring services, a gallery, practical information, and appointment contact options.", url: "https://terangabeauty.net/", brand: "TERANGA BEAUTY", previewTitle: "Beauty & wellness", previewSubtitle: "Hair · Treatments · Appointments" },
     ],
   },
   about: {
