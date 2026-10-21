@@ -13,4 +13,5 @@ Allow: /
 User-agent: *
 Allow: /
 
+# The sitemap is served by the dedicated XML route.
 Sitemap: https://3solutions.3ssolutions.workers.dev/sitemap.xml
