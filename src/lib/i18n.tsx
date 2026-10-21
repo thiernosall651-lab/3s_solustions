@@ -38,6 +38,15 @@ const fr = {
     ctaWa: "Écrire sur WhatsApp",
     servicesTitle: "Nos services",
     processTitle: "Notre méthode",
+    testimonialsTitle: "Des clients satisfaits, des projets concrets",
+    testimonialsIntro: "Des retours positifs nous ont été partagés après ces projets. Les descriptions ci-dessous résument ces retours ; elles ne sont pas des citations mot à mot.",
+    businessFeedbacks: [
+      { brand: "K2B Booking", category: "Plateforme de réservation", status: "Retour positif reçu", text: "Le client nous a fait part de sa satisfaction après nos échanges autour de son projet de réservation.", url: "https://k2bbooking.com/" },
+      { brand: "Teranga Beauty", category: "Site web de salon de beauté", status: "Retour positif reçu", text: "Un retour positif nous a également été partagé concernant le projet de site web du salon.", url: "https://terangabeauty.net/" },
+    ],
+    individualsTitle: "Votre projet personnel mérite aussi un site professionnel",
+    individualsText: "Portfolio, CV en ligne, site personnel ou petite boutique : nous aidons aussi les particuliers à présenter leur projet clairement sur le web. Nous publierons leurs avis uniquement après avoir reçu leur vrai retour et leur accord.",
+    individualsCta: "Parler de mon projet",
     steps: [
       { t: "Comprendre", d: "Nous analysons votre activité, vos objectifs et vos contraintes." },
       { t: "Concevoir", d: "Nous proposons une solution claire, adaptée à votre budget." },
@@ -155,6 +164,15 @@ const en: Dict = {
     ctaWa: "Message on WhatsApp",
     servicesTitle: "Our services",
     processTitle: "Our process",
+    testimonialsTitle: "Satisfied clients, real projects",
+    testimonialsIntro: "We have received positive feedback after these projects. The descriptions below summarize that feedback; they are not word-for-word quotations.",
+    businessFeedbacks: [
+      { brand: "K2B Booking", category: "Booking platform", status: "Positive feedback received", text: "The client shared that they were satisfied after our discussions about their booking project.", url: "https://k2bbooking.com/" },
+      { brand: "Teranga Beauty", category: "Beauty salon website", status: "Positive feedback received", text: "We also received positive feedback about the salon website project.", url: "https://terangabeauty.net/" },
+    ],
+    individualsTitle: "Your personal project deserves a professional website too",
+    individualsText: "Portfolio, online CV, personal website or a small online shop: we also help individuals present their projects clearly online. We will publish individual testimonials only after receiving their genuine feedback and permission.",
+    individualsCta: "Discuss my project",
     steps: [
       { t: "Understand", d: "We analyze your business, goals and constraints." },
       { t: "Design", d: "We propose a clear solution that fits your budget." },
