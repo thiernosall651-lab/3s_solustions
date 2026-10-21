@@ -260,7 +260,7 @@ export function usePageMeta(page: keyof Dict["meta"]) {
   }, [t, page]);
 }
 
-export const SITE_URL = "https://s3s-solutions.lovable.app";
+export const SITE_URL = "https://3solutions.3ssolutions.workers.dev";
 
 const PAGE_PATHS: Record<keyof Dict["meta"], string> = {
   home: "/",
