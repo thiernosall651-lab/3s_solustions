@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, LayoutDashboard, Bot, ArrowRight, MessageSquareQuote } from "lucide-react";
+import { Globe, LayoutDashboard, Bot, ArrowRight, ArrowUpRight, MessageSquareQuote } from "lucide-react";
 import { CONTACTS, pageHead, useLang, usePageMeta } from "@/lib/i18n";
 import { LogoImage, Reveal } from "@/components/site/Layout";
 
