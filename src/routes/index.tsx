@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, LayoutDashboard, Bot, ArrowRight, ArrowUpRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { CONTACTS, pageHead, useLang, usePageMeta } from "@/lib/i18n";
 import { LogoImage, Reveal } from "@/components/site/Layout";
+import robotMascot from "@/assets/robot-mascot.png";
+import teamThierno from "@/assets/team-thierno.png";
+import teamAbdourahamane from "@/assets/team-abdourahamane.png";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -11,15 +14,34 @@ export const Route = createFileRoute("/")({
 
 const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
 const team = [
-  { name: "Thierno", initials: "T" },
-  { name: "Nazir Sall", initials: "NS" },
-  { name: "Abdourahamane", initials: "A" },
+  { name: "Thierno", initials: "T", image: teamThierno },
+  { name: "Abdourahamane", initials: "A", image: teamAbdourahamane },
 ] as const;
 const supportedProjects = [
-  { name: "K2B Booking", url: "https://k2bbooking.com/", domain: "k2bbooking.com" },
-  { name: "Teranga Beauty", url: "https://terangabeauty.net/", domain: "terangabeauty.net" },
-  { name: "Les Nouveaux Jardins d’Amizmiz", url: "https://lesnouveauxjardinsdamizmiz.com/", domain: "lesnouveauxjardinsdamizmiz.com" },
-  { name: "Sen Drapeaux", url: "https://sen-drapeau.3ssolutions.workers.dev/", domain: "sen-drapeau.3ssolutions.workers.dev" },
+  {
+    name: "K2B Booking",
+    url: "https://k2bbooking.com/",
+    domain: "k2bbooking.com",
+    logo: "https://s3s-solutions.lovable.app/__l5e/assets-v1/d23e5b38-c0bd-476c-bbf4-9974148455e8/logo-k2b-booking.png",
+  },
+  {
+    name: "Teranga Beauty",
+    url: "https://terangabeauty.net/",
+    domain: "terangabeauty.net",
+    logo: "https://s3s-solutions.lovable.app/__l5e/assets-v1/c944e8c8-f768-4514-a82a-89ca4d8d3922/logo-teranga-beauty.png",
+  },
+  {
+    name: "Les Nouveaux Jardins d’Amizmiz",
+    url: "https://lesnouveauxjardinsdamizmiz.com/",
+    domain: "lesnouveauxjardinsdamizmiz.com",
+    logo: "https://s3s-solutions.lovable.app/__l5e/assets-v1/9a886525-468e-4194-abd7-7e445e2667b7/logo-jardins-amizmiz.jpg",
+  },
+  {
+    name: "Sen Drapeaux",
+    url: "https://sen-drapeau.3ssolutions.workers.dev/",
+    domain: "sen-drapeau.3ssolutions.workers.dev",
+    logo: "https://s3s-solutions.lovable.app/__l5e/assets-v1/2c443526-3d3d-4325-9abe-fd5c7ef5deeb/logo-sen-drapeaux.svg",
+  },
 ] as const;
 
 function Index() {
@@ -48,10 +70,35 @@ function Index() {
           </Reveal>
 
           <Reveal className="relative">
-            <div className="absolute -inset-5 rounded-[2rem] bg-primary/10 blur-2xl" aria-hidden="true" />
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-glow">
-              <LogoImage variant="hero" alt="3S Solutions — Agence digitale" loading="eager" className="aspect-[3/2] w-full rounded-2xl object-cover" />
-              <div className="grid grid-cols-3 gap-2 p-3 sm:gap-3 sm:p-4">
+            <div className="absolute -inset-5 rounded-[2rem] bg-primary/15 blur-2xl" aria-hidden="true" />
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-glow">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-blue-950/90 via-background to-cyan-950/30" aria-hidden="true" />
+              <img
+                src={robotMascot}
+                alt={t.home.robotAlt}
+                loading="eager"
+                className="relative mx-auto aspect-[4/3] w-full max-w-lg object-contain p-4 transition-transform duration-700 motion-safe:hover:-translate-y-1 motion-reduce:transition-none"
+              />
+              <div className="relative border-t border-border bg-background/80 p-4 backdrop-blur sm:p-5">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex min-w-0 items-center gap-3">
+                    <LogoImage variant="footer" alt="3S Solutions" className="w-20 shrink-0 rounded-lg" loading="lazy" />
+                    <div className="min-w-0">
+                      <p className="font-display font-semibold">{t.home.robotLabel}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t.home.robotDesc}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new Event("3s-open-whatsapp-assistant"))}
+                    className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+                  >
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    {t.home.helpCta}
+                  </button>
+                </div>
+              </div>
+              <div className="relative grid grid-cols-3 gap-2 border-t border-border p-3 sm:gap-3 sm:p-4">
                 {t.services.items.map((service, i) => {
                   const Icon = serviceIcons[i] ?? Globe;
                   return (
@@ -96,6 +143,28 @@ function Index() {
         </div>
       </section>
 
+      <section className="border-y border-border bg-card/40" aria-labelledby="process-heading">
+        <div className="container-site py-14 md:py-20">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="eyebrow">{t.home.location}</p>
+              <h2 id="process-heading" className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.home.processTitle}</h2>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {t.home.steps.map((step, index) => (
+              <Reveal key={step.t}>
+                <article className="h-full rounded-2xl border border-border bg-background p-5 sm:p-6">
+                  <p className="font-display text-sm font-bold tracking-[0.2em] text-accent">0{index + 1}</p>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{step.t}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.d}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-t border-border" aria-labelledby="team-heading">
         <div className="container-site py-14 md:py-20">
           <Reveal>
@@ -104,18 +173,23 @@ function Index() {
               <h2 id="team-heading" className="font-display text-3xl font-bold md:text-4xl">{t.home.teamTitle}</h2>
             </div>
           </Reveal>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {team.map((member) => (
               <Reveal key={member.name}>
-                <article className="h-full overflow-hidden rounded-lg border border-border bg-card">
-                  <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-secondary/50">
-                    <div className="absolute inset-5 border border-border" aria-hidden="true" />
-                    <span className="absolute left-5 top-5 h-6 w-6 border-l border-t border-accent/70" aria-hidden="true" />
-                    <span className="absolute bottom-5 right-5 h-6 w-6 border-b border-r border-primary" aria-hidden="true" />
-                    <span className="font-display text-7xl font-semibold text-accent/80" aria-hidden="true">{member.initials}</span>
-                    <p className="absolute bottom-8 inset-x-6 text-center text-xs text-muted-foreground">{t.home.teamPhotoPlaceholder}</p>
+                <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-300 hover:border-primary/50 motion-reduce:transition-none">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-secondary/50">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" aria-hidden="true" />
+                    <img
+                      src={member.image}
+                      alt={member.name === "Thierno" ? t.home.teamPhotoAltThierno : t.home.teamPhotoAltAbdourahamane}
+                      loading="lazy"
+                      className="size-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02] motion-reduce:transform-none motion-reduce:transition-none"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-background/80 px-3 py-1 text-xs font-semibold text-foreground backdrop-blur">
+                      3S Solutions
+                    </span>
                   </div>
-                  <div className="border-t border-border p-6">
+                  <div className="border-t border-border p-5 sm:p-6">
                     <h3 className="break-words font-display text-xl font-semibold">{member.name}</h3>
                     <p className="mt-2 text-sm text-muted-foreground">{t.home.teamCaption}</p>
                   </div>
@@ -138,9 +212,16 @@ function Index() {
             {supportedProjects.map((project) => (
               <Reveal key={project.url}>
                 <a href={project.url} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-background p-6 transition-colors hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
-                  <div className="flex min-h-36 items-center justify-center py-5 text-center">
-                    <h3 className="font-display text-xl font-semibold leading-relaxed text-foreground">{project.name}</h3>
+                  <div className="flex min-h-36 items-center justify-center rounded-xl bg-white p-3">
+                    <img
+                      src={project.logo}
+                      alt={project.name}
+                      loading="lazy"
+                      className="max-h-28 w-full object-contain"
+                      onError={(event) => { event.currentTarget.style.visibility = "hidden"; }}
+                    />
                   </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold leading-snug text-foreground">{project.name}</h3>
                   <div className="mt-auto border-t border-border pt-4">
                     <p className="break-all text-xs leading-relaxed text-muted-foreground">{project.domain}</p>
                     <div className="mt-4 flex items-center justify-between gap-3 text-sm font-semibold text-accent">
@@ -187,6 +268,27 @@ function Index() {
               </Link>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="container-site py-14 md:py-20" aria-labelledby="commitments-heading">
+        <Reveal>
+          <div className="max-w-2xl">
+            <p className="eyebrow">{t.home.trustTitle}</p>
+            <h2 id="commitments-heading" className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.home.commitmentsTitle}</h2>
+            <p className="mt-4 leading-relaxed text-muted-foreground">{t.home.commitmentsIntro}</p>
+          </div>
+        </Reveal>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {t.home.commitments.map((item) => (
+            <Reveal key={item.t}>
+              <article className="h-full rounded-2xl border border-border bg-card p-5">
+                <CheckCircle2 className="size-6 text-accent" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-lg font-semibold">{item.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.d}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </section>
 
