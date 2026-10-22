@@ -14,7 +14,7 @@ import { Route as AProposRouteImport } from './routes/a-propos'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as SitemapXmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,7 +41,7 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapXmlRoute = SitemapXmlRouteImport.update({
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
@@ -53,7 +53,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +61,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,15 +70,33 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/realisations': typeof RealisationsRoute
   '/services': typeof ServicesRoute
-  '/sitemap.xml': typeof SitemapXmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/a-propos' | '/contact' | '/realisations' | '/services' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/a-propos'
+    | '/contact'
+    | '/realisations'
+    | '/services'
+    | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/a-propos' | '/contact' | '/realisations' | '/services' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/a-propos'
+    | '/contact'
+    | '/realisations'
+    | '/services'
+    | '/sitemap.xml'
   id:
-    '__root__' | '/' | '/a-propos' | '/contact' | '/realisations' | '/services' | '/sitemap.xml'
+    | '__root__'
+    | '/'
+    | '/a-propos'
+    | '/contact'
+    | '/realisations'
+    | '/services'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -87,7 +105,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   RealisationsRoute: typeof RealisationsRoute
   ServicesRoute: typeof ServicesRoute
-  SitemapXmlRoute: typeof SitemapXmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -131,7 +149,7 @@ declare module '@tanstack/react-router' {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapXmlRouteImport
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -143,7 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   RealisationsRoute: RealisationsRoute,
   ServicesRoute: ServicesRoute,
-  SitemapXmlRoute: SitemapXmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
