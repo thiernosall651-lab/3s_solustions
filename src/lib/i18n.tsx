@@ -16,7 +16,7 @@ export const CONTACTS = {
 export const SOCIALS = [
   { id: "instagram", label: "Instagram", url: CONTACTS.instagram },
   { id: "tiktok", label: "TikTok", url: CONTACTS.tiktok },
-  { id: "facebook", label: "Facebook", url: "https://www.facebook.com/automobilge" },
+  { id: "facebook", label: "Facebook", url: "https://www.facebook.com/3solustions" },
 ] as const satisfies readonly { id: "instagram" | "tiktok" | "facebook"; label: string; url: string }[];
 
 export type WaKey = "ma1" | "ma2" | "sn";
