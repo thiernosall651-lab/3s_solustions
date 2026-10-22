@@ -13,7 +13,7 @@ const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
 function Index() {
   const { t } = useLang();
   usePageMeta("home");
-  const wa = \`${CONTACTS.ma1.url}?text=\${encodeURIComponent(t.waDefault)}\`;
+  const wa = `${CONTACTS.ma1.url}?text=${encodeURIComponent(t.waDefault)}`;
 
   return (
     <>
@@ -96,7 +96,7 @@ function Index() {
             {t.portfolio.items.map((project, i) => (
               <Reveal key={project.url}>
                 <article className="card-lift h-full overflow-hidden p-0">
-                  <div className={\`relative flex min-h-44 items-end overflow-hidden p-6 sm:min-h-52 \${i === 0 ? "bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" : "bg-gradient-to-br from-slate-950 via-indigo-950 to-cyan-950"}\`}>
+                  <div className={`relative flex min-h-44 items-end overflow-hidden p-6 sm:min-h-52 ${i === 0 ? "bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" : "bg-gradient-to-br from-slate-950 via-indigo-950 to-cyan-950"}`}>
                     <div className="absolute -right-8 -top-12 size-48 rounded-full border border-white/10" aria-hidden="true" />
                     <div className="absolute -right-2 -top-6 size-32 rounded-full border border-white/10" aria-hidden="true" />
                     <div className="relative">
