@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 const SITE_URL = "https://3solutions.3ssolutions.workers.dev";
-const LAST_MODIFIED = "2026-10-21";
+const LAST_MODIFIED = "2026-10-22";
 const SITEMAP_PATHS = [
   "/",
   "/services",

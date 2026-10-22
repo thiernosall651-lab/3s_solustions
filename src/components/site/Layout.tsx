@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Menu, X, Mail, MessageCircle, Instagram, Facebook } from "lucide-react";
 import { CONTACTS, SOCIALS, useLang } from "@/lib/i18n";
-const LOGO_SRC = "https://s3s-solutions.lovable.app/__l5e/assets-v1/b13ea4fc-7f76-4096-adaa-b64846e80b19/logo-3s.png";
+export const LOGO_SRC = "https://s3s-solutions.lovable.app/__l5e/assets-v1/b13ea4fc-7f76-4096-adaa-b64846e80b19/logo-3s.png";
 
 export function Brand() {
   return (

@@ -2,11 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Globe, LayoutDashboard, Bot, ArrowRight, ArrowUpRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { CONTACTS, pageHead, useLang, usePageMeta } from "@/lib/i18n";
 import { LogoImage, Reveal } from "@/components/site/Layout";
-import robotMascot from "@/assets/robot-mascot.png";
-import teamThierno from "@/assets/team-thierno.png";
+import robotMascot from "@/assets/robot-mascot.webp";
+import teamThierno from "@/assets/team-thierno.webp";
+import teamAbdourahamane from "@/assets/team-abdourahamane.webp";
 
 import { Button } from "@/components/ui/button";
 import { ProjectLogo, type ProjectLogoData } from "@/components/site/ProjectLogo";
+import { QuickContact } from "@/components/site/QuickContact";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead("home"),
@@ -15,9 +17,34 @@ export const Route = createFileRoute("/")({
 
 const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
 const team = [
-  { name: "Thierno", initials: "T", image: teamThierno },
-  { name: "Abdourahamane", initials: "A", image: "https://raw.githubusercontent.com/thiernosall651-lab/3solutions/main/public/team-abdourahamane.webp" },
+  { name: "Thierno", image: teamThierno },
+  { name: "Abdourahamane", image: teamAbdourahamane },
 ] as const;
+
+/** Portrait ovale avec arcs décoratifs (accent + gris), inspiré des pages « équipe » d'agences. */
+function OvalPortrait({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="group relative mx-auto w-52 sm:w-60" style={{ aspectRatio: "100 / 124" }}>
+      <svg viewBox="0 0 100 124" fill="none" aria-hidden="true" className="absolute inset-0 size-full">
+        <path d="M62.2 5 A47 59 0 0 1 96.8 67.1" className="stroke-accent" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M94.7 80.2 A47 59 0 0 1 91.5 89.7" className="stroke-accent" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M5.8 82.2 A47 59 0 0 0 23 110.3" className="stroke-muted-foreground/50" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M3.7 51.8 A47 59 0 0 0 3 64.1" className="stroke-muted-foreground/50" strokeWidth="1.6" strokeLinecap="round" />
+      </svg>
+      <div className="absolute inset-[7%] overflow-hidden rounded-[999px] border border-border bg-secondary">
+        <img
+          src={src}
+          alt={alt}
+          width={640}
+          height={800}
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
+        />
+      </div>
+    </div>
+  );
+}
 const supportedProjects: (ProjectLogoData & { name: string; url: string; domain: string })[] = [
   {
     name: "K2B Booking",
@@ -89,7 +116,11 @@ function Index() {
               <img
                 src={robotMascot}
                 alt={t.home.robotAlt}
+                width={1024}
+                height={1024}
                 loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="relative mx-auto aspect-[4/3] w-full max-w-lg object-contain p-4 transition-transform duration-700 motion-safe:hover:-translate-y-1 motion-reduce:transition-none"
               />
               <div className="relative border-t border-border bg-background/80 p-4 backdrop-blur sm:p-5">
@@ -110,17 +141,6 @@ function Index() {
                     {t.home.helpCta}
                   </button>
                 </div>
-              </div>
-              <div className="relative grid grid-cols-3 gap-2 border-t border-border p-3 sm:gap-3 sm:p-4">
-                {t.services.items.map((service, i) => {
-                  const Icon = serviceIcons[i] ?? Globe;
-                  return (
-                    <div key={service.t} className="min-w-0 rounded-xl border border-border bg-background/70 p-3">
-                      <Icon className="size-5 text-primary" aria-hidden="true" />
-                      <p className="mt-2 text-xs font-semibold leading-snug sm:text-sm">{service.t}</p>
-                    </div>
-                  );
-                })}
               </div>
             </div>
           </Reveal>
@@ -153,64 +173,6 @@ function Index() {
               </Reveal>
             );
           })}
-        </div>
-      </section>
-
-      <section className="border-y border-border bg-card/40" aria-labelledby="process-heading">
-        <div className="container-site py-14 md:py-20">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="eyebrow">{t.home.location}</p>
-              <h2 id="process-heading" className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.home.processTitle}</h2>
-            </div>
-          </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {t.home.steps.map((step, index) => (
-              <Reveal key={step.t}>
-                <article className="h-full rounded-2xl border border-border bg-background p-5 sm:p-6">
-                  <p className="font-display text-sm font-bold tracking-[0.2em] text-accent">0{index + 1}</p>
-                  <h3 className="mt-4 font-display text-lg font-semibold">{step.t}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.d}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border" aria-labelledby="team-heading">
-        <div className="container-site py-10 md:py-14">
-          <Reveal>
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <span className="h-px w-10 bg-accent" aria-hidden="true" />
-                <h2 id="team-heading" className="font-display text-2xl font-bold md:text-3xl">{t.home.teamTitle}</h2>
-              </div>
-              <p className="text-sm text-muted-foreground">{t.home.teamCaption}</p>
-            </div>
-          </Reveal>
-          <div className="mx-auto mt-6 grid max-w-4xl gap-4 md:grid-cols-2">
-            {team.map((member) => (
-              <Reveal key={member.name}>
-                <article className="group flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-primary/50 sm:gap-5 sm:p-5 motion-reduce:transition-none">
-                  <div className="relative size-20 shrink-0 overflow-hidden rounded-full border-2 border-accent/70 bg-secondary sm:size-24">
-                    <span className="absolute inset-0 flex items-center justify-center font-display text-3xl font-bold text-accent" aria-hidden="true">{member.initials}</span>
-                    <img
-                      src={member.image}
-                      alt={member.name === "Thierno" ? t.home.teamPhotoAltThierno : t.home.teamPhotoAltAbdourahamane}
-                      loading="lazy"
-                      onError={(event) => { event.currentTarget.style.display = "none"; }}
-                      className="relative size-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="break-words font-display text-lg font-semibold sm:text-xl">{member.name}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{t.home.teamCaption}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -247,75 +209,74 @@ function Index() {
         </div>
       </section>
 
-      <section className="container-site py-14 md:py-20">
-        <Reveal>
-          <div className="max-w-2xl">
-            <h2 className="section-title">{t.home.audienceTitle}</h2>
-          </div>
-        </Reveal>
-        <div className="mt-8 grid gap-5 md:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-2xl border border-border bg-card p-6 md:p-8">
-              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><LayoutDashboard className="size-5" /></span>
-              <h3 className="mt-5 font-display text-2xl font-semibold">{t.home.businessTitle}</h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{t.home.businessDesc}</p>
-              <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                {t.home.servicesTitle}<ArrowRight className="size-4" />
-              </Link>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="h-full rounded-2xl border border-primary/25 bg-primary/5 p-6 md:p-8">
-              <span className="inline-flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary"><Globe className="size-5" /></span>
-              <h3 className="mt-5 font-display text-2xl font-semibold">{t.home.personalTitle}</h3>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{t.home.personalDesc}</p>
-              <Link to="/services" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                {t.services.personal.title}<ArrowRight className="size-4" />
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="container-site py-14 md:py-20" aria-labelledby="commitments-heading">
-        <Reveal>
-          <div className="max-w-2xl">
-            <p className="eyebrow">{t.home.trustTitle}</p>
-            <h2 id="commitments-heading" className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.home.commitmentsTitle}</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{t.home.commitmentsIntro}</p>
-          </div>
-        </Reveal>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {t.home.commitments.map((item) => (
-            <Reveal key={item.t}>
-              <article className="h-full rounded-2xl border border-border bg-card p-5">
-                <CheckCircle2 className="size-6 text-accent" aria-hidden="true" />
-                <h3 className="mt-4 font-display text-lg font-semibold">{item.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.d}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-primary/25 bg-primary/5" aria-labelledby="trust-cta-heading">
+      <section className="border-y border-border bg-card/40" aria-labelledby="process-heading">
         <div className="container-site py-14 md:py-20">
           <Reveal>
-            <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+            <div className="max-w-2xl">
+              <p className="eyebrow">{t.home.location}</p>
+              <h2 id="process-heading" className="mt-3 font-display text-3xl font-bold md:text-4xl">{t.home.processTitle}</h2>
+            </div>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {t.home.steps.map((step, index) => (
+              <Reveal key={step.t}>
+                <article className="h-full rounded-2xl border border-border bg-background p-5 sm:p-6">
+                  <p className="font-display text-sm font-bold tracking-[0.2em] text-accent">0{index + 1}</p>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{step.t}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.d}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-card/40" aria-labelledby="team-heading">
+        <div className="container-site py-14 md:py-20">
+          <Reveal>
+            <div className="flex items-center gap-4">
+              <span className="h-px w-10 bg-accent" aria-hidden="true" />
+              <h2 id="team-heading" className="font-display text-3xl font-bold md:text-4xl">{t.home.teamTitle}</h2>
+            </div>
+          </Reveal>
+          <div className="mx-auto mt-10 grid max-w-3xl gap-10 sm:grid-cols-2">
+            {team.map((member) => (
+              <Reveal key={member.name}>
+                <article className="text-center">
+                  <OvalPortrait
+                    src={member.image}
+                    alt={member.name === "Thierno" ? t.home.teamPhotoAltThierno : t.home.teamPhotoAltAbdourahamane}
+                  />
+                  <h3 className="mt-5 font-display text-xl font-semibold">{member.name}</h3>
+                  <p className="mt-1 text-sm text-accent">{t.home.teamCaption}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact-rapide" className="border-t border-primary/25 bg-gradient-to-br from-blue-950/60 via-background to-cyan-950/30" aria-labelledby="lead-heading">
+        <div className="container-site grid items-center gap-10 py-14 md:py-20 lg:grid-cols-2 lg:gap-16">
+          <Reveal>
+            <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+              <img
+                src={robotMascot}
+                alt={t.home.robotAlt}
+                width={1024}
+                height={1024}
+                loading="lazy"
+                decoding="async"
+                className="w-40 shrink-0 object-contain sm:w-48 lg:w-56"
+              />
               <div>
-                <p className="text-sm font-semibold text-accent">{t.home.trustTitle}</p>
-                <h2 id="trust-cta-heading" className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">{t.home.trustCtaTitle}</h2>
-                <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">{t.home.trustCtaDesc}</p>
-              </div>
-              <div className="flex flex-col items-start gap-3 lg:items-stretch">
-                <Button asChild size="lg" className="h-auto max-w-full whitespace-normal py-3 text-center">
-                  <Link to="/contact">{t.home.ctaContact}<ArrowRight aria-hidden="true" /></Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto max-w-full whitespace-normal border-accent/40 py-3 text-center">
-                  <a href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" />{t.home.ctaWa}</a>
-                </Button>
+                <h2 id="lead-heading" className="font-display text-3xl font-bold leading-tight md:text-4xl">{t.home.leadTitle}</h2>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{t.home.leadIntro}</p>
               </div>
             </div>
+          </Reveal>
+          <Reveal>
+            <QuickContact />
           </Reveal>
         </div>
       </section>

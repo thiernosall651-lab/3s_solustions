@@ -78,6 +78,16 @@ const fr = {
     finalTitle: "Votre prochaine idée peut commencer ici.",
     finalDesc: "Parlez-nous de votre besoin. Nous étudierons avec vous la solution la plus adaptée.",
     finalCta: "Démarrer la discussion",
+    leadTitle: "Vous avez un projet digital ? Parlons-en.",
+    leadIntro: "Décrivez votre besoin en quelques mots : nous vous répondons rapidement sur WhatsApp.",
+    leadName: "Nom", leadNamePh: "Votre nom",
+    leadPhone: "Téléphone", leadPhonePh: "Votre numéro",
+    leadEmail: "E-mail", leadEmailPh: "vous@exemple.com",
+    leadNeed: "Votre besoin", leadNeedPh: "Ex. : un site pour mon activité, un CRM, une automatisation…",
+    leadOptional: "(facultatif)",
+    leadSubmit: "Je veux être contacté(e)",
+    leadErr: "Indiquez votre nom et votre besoin.",
+    leadMore: "Voir toutes les façons de nous contacter",
   },
   services: {
     title: "Nos services",
@@ -151,7 +161,7 @@ const fr = {
     errForm: "Veuillez corriger les champs indiqués.",
     note: "WhatsApp s'ouvrira dans un nouvel onglet. Votre message sera envoyé uniquement lorsque vous l'enverrez vous-même.",
     details: "Coordonnées",
-    waMsg: { hello: "Bonjour 3S Solutions,", name: "Nom", company: "Entreprise", service: "Service", message: "Message" },
+    waMsg: { hello: "Bonjour 3S Solutions,", name: "Nom", company: "Entreprise", service: "Service", message: "Message", phone: "Téléphone", email: "E-mail" },
   },
   footer: { tagline: "Agence digitale — Sénégal · Maroc · Europe", contact: "Contact", follow: "Suivez-nous", rights: "Tous droits réservés.", nav: "Navigation" },
   waDefault: "Bonjour 3S Solutions, je souhaite parler de mon projet.",
@@ -228,6 +238,16 @@ const en: Dict = {
     finalTitle: "Your next idea can start here.",
     finalDesc: "Tell us what you need. We’ll work with you to identify the right solution.",
     finalCta: "Start a conversation",
+    leadTitle: "Have a digital project? Let’s talk.",
+    leadIntro: "Describe your need in a few words: we reply quickly on WhatsApp.",
+    leadName: "Name", leadNamePh: "Your name",
+    leadPhone: "Phone", leadPhonePh: "Your number",
+    leadEmail: "Email", leadEmailPh: "you@example.com",
+    leadNeed: "Your need", leadNeedPh: "E.g. a website for my business, a CRM, an automation…",
+    leadOptional: "(optional)",
+    leadSubmit: "I’d like to be contacted",
+    leadErr: "Please enter your name and your need.",
+    leadMore: "See all the ways to contact us",
   },
   services: {
     title: "Our services",
@@ -301,7 +321,7 @@ const en: Dict = {
     errForm: "Please fix the highlighted fields.",
     note: "WhatsApp will open in a new tab. Your message is only sent when you send it yourself.",
     details: "Contact details",
-    waMsg: { hello: "Hello 3S Solutions,", name: "Name", company: "Company", service: "Service", message: "Message" },
+    waMsg: { hello: "Hello 3S Solutions,", name: "Name", company: "Company", service: "Service", message: "Message", phone: "Phone", email: "Email" },
   },
   footer: { tagline: "Digital agency — Senegal · Morocco · Europe", contact: "Contact", follow: "Follow us", rights: "All rights reserved.", nav: "Navigation" },
   waDefault: "Hello 3S Solutions, I'd like to discuss my project.",
@@ -356,6 +376,8 @@ export function usePageMeta(page: keyof Dict["meta"]) {
 }
 
 export const SITE_URL = "https://3solutions.3ssolutions.workers.dev";
+export const OG_IMAGE = `${SITE_URL}/og-image.png`;
+export const OG_IMAGE_ALT = "3S Solutions — Sites web, CRM et IA — Sénégal, Maroc, Europe";
 
 const PAGE_PATHS: Record<keyof Dict["meta"], string> = {
   home: "/",
@@ -378,9 +400,15 @@ export function pageHead(page: keyof Dict["meta"]) {
       { property: "og:url", content: url },
       { property: "og:locale", content: "fr_FR" },
       { property: "og:locale:alternate", content: "en_US" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: m.title },
       { name: "twitter:description", content: m.desc },
+      { name: "twitter:image", content: OG_IMAGE },
+      { name: "twitter:image:alt", content: OG_IMAGE_ALT },
     ],
     links: [{ rel: "canonical", href: url }],
   };
@@ -388,12 +416,15 @@ export function pageHead(page: keyof Dict["meta"]) {
 
 export function buildWhatsAppUrl(
   wa: WaKey,
-  d: { name: string; company: string; service: string; message: string },
+  d: { name: string; company: string; service: string; message: string; phone?: string; email?: string },
   lang: Lang,
 ) {
   const m = translations[lang].contact.waMsg;
   const lines = [m.hello, "", `${m.name}: ${d.name}`];
   if (d.company) lines.push(`${m.company}: ${d.company}`);
-  lines.push(`${m.service}: ${d.service}`, "", `${m.message}: ${d.message}`);
+  if (d.phone) lines.push(`${m.phone}: ${d.phone}`);
+  if (d.email) lines.push(`${m.email}: ${d.email}`);
+  if (d.service) lines.push(`${m.service}: ${d.service}`);
+  lines.push("", `${m.message}: ${d.message}`);
   return `https://wa.me/${CONTACTS[wa].number}?text=${encodeURIComponent(lines.join("\n"))}`;
 }

@@ -12,8 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { CONTACTS, LanguageProvider, SITE_URL, SOCIALS } from "@/lib/i18n";
-import { Header, Footer } from "@/components/site/Layout";
+import { CONTACTS, LanguageProvider, OG_IMAGE, OG_IMAGE_ALT, SITE_URL, SOCIALS, translations } from "@/lib/i18n";
+import { Header, Footer, LOGO_SRC } from "@/components/site/Layout";
 import { WhatsAppAssistant } from "@/components/site/WhatsAppAssistant";
 import { CookieConsent } from "@/components/site/CookieConsent";
 
@@ -77,6 +77,50 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   );
 }
 
+const STRUCTURED_DATA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${SITE_URL}/#organization`,
+      name: "3S Solutions",
+      url: SITE_URL,
+      logo: LOGO_SRC,
+      image: OG_IMAGE,
+      description: translations.fr.meta.home.desc,
+      email: CONTACTS.email,
+      telephone: "+212696661247",
+      sameAs: SOCIALS.map((s) => s.url),
+      areaServed: [
+        { "@type": "Country", name: "Sénégal" },
+        { "@type": "Country", name: "Maroc" },
+        { "@type": "Place", name: "Europe" },
+      ],
+      knowsLanguage: ["fr", "en"],
+      contactPoint: [
+        { "@type": "ContactPoint", contactType: "customer service", telephone: "+212696661247", areaServed: "MA", availableLanguage: ["fr", "en"] },
+        { "@type": "ContactPoint", contactType: "customer service", telephone: "+221788240592", areaServed: "SN", availableLanguage: ["fr", "en"] },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services 3S Solutions",
+        itemListElement: translations.fr.services.items.map((item) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: item.t, description: item.short },
+        })),
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "3S Solutions",
+      inLanguage: "fr",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -87,7 +131,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "3S Solutions" },
       { property: "og:site_name", content: "3S Solutions" },
       { property: "og:type", content: "website" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:image", content: OG_IMAGE },
+      { property: "og:image:alt", content: OG_IMAGE_ALT },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
       { name: "theme-color", content: "#071426" },
       { name: "google-site-verification", content: "BiPd5Dtp0hMvMIswNYwQHr1sCPRDaN3BnHj45dIyKug" },
     ],
@@ -99,21 +147,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "3S Solutions",
-          url: SITE_URL,
-          email: CONTACTS.email,
-          sameAs: SOCIALS.map((s) => s.url),
-          areaServed: [
-            { "@type": "Country", name: "Sénégal" },
-            { "@type": "Country", name: "Maroc" },
-          ],
-        }),
-      },
+      { type: "application/ld+json", children: JSON.stringify(STRUCTURED_DATA) },
     ],
   }),
   shellComponent: RootShell,
