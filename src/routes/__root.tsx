@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CONTACTS, LanguageProvider, SITE_URL, SOCIALS } from "@/lib/i18n";
 import { Header, Footer } from "@/components/site/Layout";
 import { WhatsAppAssistant } from "@/components/site/WhatsAppAssistant";
+import { CookieConsent } from "@/components/site/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -147,6 +148,7 @@ function RootComponent() {
         </main>
         <Footer />
         <WhatsAppAssistant />
+        <CookieConsent />
       </LanguageProvider>
     </QueryClientProvider>
   );
