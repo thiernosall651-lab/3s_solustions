@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Globe, LayoutDashboard, Bot, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Globe, LayoutDashboard, Bot, ArrowRight, ArrowUpRight, CheckCircle2, MessageCircle } from "lucide-react";
 import { CONTACTS, pageHead, useLang, usePageMeta } from "@/lib/i18n";
 import { LogoImage, Reveal } from "@/components/site/Layout";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead("home"),
@@ -9,6 +10,17 @@ export const Route = createFileRoute("/")({
 });
 
 const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
+const team = [
+  { name: "Thierno", initials: "T" },
+  { name: "Nazir Sall", initials: "NS" },
+  { name: "Abdourahamane", initials: "A" },
+] as const;
+const supportedProjects = [
+  { name: "K2B Booking", url: "https://k2bbooking.com/", domain: "k2bbooking.com" },
+  { name: "Teranga Beauty", url: "https://terangabeauty.net/", domain: "terangabeauty.net" },
+  { name: "Les Nouveaux Jardins d’Amizmiz", url: "https://lesnouveauxjardinsdamizmiz.com/", domain: "lesnouveauxjardinsdamizmiz.com" },
+  { name: "Sen Drapeaux", url: "https://sen-drapeau.3ssolutions.workers.dev/", domain: "sen-drapeau.3ssolutions.workers.dev" },
+] as const;
 
 function Index() {
   const { t } = useLang();
@@ -84,44 +96,66 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-card/60">
+      <section className="border-t border-border" aria-labelledby="team-heading">
         <div className="container-site py-14 md:py-20">
           <Reveal>
-            <div className="max-w-2xl">
-              <h2 className="section-title">{t.home.projectsTitle}</h2>
-              <p className="mt-4 text-muted-foreground">{t.home.projectsDesc}</p>
+            <div className="flex items-center gap-4">
+              <span className="h-px w-10 bg-accent" aria-hidden="true" />
+              <h2 id="team-heading" className="font-display text-3xl font-bold md:text-4xl">{t.home.teamTitle}</h2>
             </div>
           </Reveal>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {t.portfolio.items.map((project, i) => (
-              <Reveal key={project.url}>
-                <article className="card-lift h-full overflow-hidden p-0">
-                  <div className={`relative flex min-h-44 items-end overflow-hidden p-6 sm:min-h-52 ${i === 0 ? "bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900" : "bg-gradient-to-br from-slate-950 via-indigo-950 to-cyan-950"}`}>
-                    <div className="absolute -right-8 -top-12 size-48 rounded-full border border-white/10" aria-hidden="true" />
-                    <div className="absolute -right-2 -top-6 size-32 rounded-full border border-white/10" aria-hidden="true" />
-                    <div className="relative">
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-200">{project.loc}</p>
-                      <p className="mt-3 font-display text-2xl font-bold tracking-wide text-white sm:text-3xl">{project.brand}</p>
-                      <p className="mt-1 text-sm text-slate-300">{project.previewSubtitle}</p>
-                    </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {team.map((member) => (
+              <Reveal key={member.name}>
+                <article className="h-full overflow-hidden rounded-lg border border-border bg-card">
+                  <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-secondary/50">
+                    <div className="absolute inset-5 border border-border" aria-hidden="true" />
+                    <span className="absolute left-5 top-5 h-6 w-6 border-l border-t border-accent/70" aria-hidden="true" />
+                    <span className="absolute bottom-5 right-5 h-6 w-6 border-b border-r border-primary" aria-hidden="true" />
+                    <span className="font-display text-7xl font-semibold text-accent/80" aria-hidden="true">{member.initials}</span>
+                    <p className="absolute bottom-8 inset-x-6 text-center text-xs text-muted-foreground">{t.home.teamPhotoPlaceholder}</p>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-display text-xl font-semibold">{project.t}</h3>
-                    <p className="mt-3 leading-relaxed text-muted-foreground">{project.d}</p>
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent">
-                      {t.portfolio.viewSite}
-                      <ArrowRight className="size-4" />
-                    </a>
+                  <div className="border-t border-border p-6">
+                    <h3 className="break-words font-display text-xl font-semibold">{member.name}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{t.home.teamCaption}</p>
                   </div>
                 </article>
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-card/40" aria-labelledby="supported-heading">
+        <div className="container-site py-14 md:py-20">
+          <Reveal>
+            <div className="max-w-2xl">
+              <h2 id="supported-heading" className="font-display text-3xl font-bold md:text-4xl">{t.home.supportedTitle}</h2>
+              <p className="mt-4 text-muted-foreground">{t.home.supportedCaption}</p>
+            </div>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {supportedProjects.map((project) => (
+              <Reveal key={project.url}>
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-background p-6 transition-colors hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+                  <div className="flex min-h-36 items-center justify-center py-5 text-center">
+                    <h3 className="font-display text-xl font-semibold leading-relaxed text-foreground">{project.name}</h3>
+                  </div>
+                  <div className="mt-auto border-t border-border pt-4">
+                    <p className="break-all text-xs leading-relaxed text-muted-foreground">{project.domain}</p>
+                    <div className="mt-4 flex items-center justify-between gap-3 text-sm font-semibold text-accent">
+                      <span>{t.portfolio.viewSite}</span>
+                      <ArrowUpRight className="size-4 shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" aria-hidden="true" />
+                    </div>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
+          </div>
           <div className="mt-7">
-            <Link to="/realisations" className="btn-outline inline-flex items-center gap-2">
-              {t.home.projectsCta}
-              <ArrowRight className="size-4" />
-            </Link>
+            <Button asChild variant="link" className="h-auto px-0 text-accent">
+              <Link to="/realisations">{t.home.projectsCta}<ArrowRight aria-hidden="true" /></Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -156,26 +190,26 @@ function Index() {
         </div>
       </section>
 
-      <section className="container-site py-10 md:py-14">
-        <Reveal>
-          <div className="grid gap-8 rounded-3xl border border-border bg-card p-7 md:grid-cols-[0.8fr_1.2fr] md:items-center md:p-10">
-            <div>
-              <p className="eyebrow">{t.home.location}</p>
-              <h2 className="mt-3 font-display text-2xl font-bold md:text-3xl">{t.home.trustTitle}</h2>
+      <section className="border-y border-primary/25 bg-primary/5" aria-labelledby="trust-cta-heading">
+        <div className="container-site py-14 md:py-20">
+          <Reveal>
+            <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold text-accent">{t.home.trustTitle}</p>
+                <h2 id="trust-cta-heading" className="mt-4 max-w-2xl font-display text-3xl font-bold leading-tight md:text-4xl">{t.home.trustCtaTitle}</h2>
+                <p className="mt-5 max-w-2xl leading-relaxed text-muted-foreground">{t.home.trustCtaDesc}</p>
+              </div>
+              <div className="flex flex-col items-start gap-3 lg:items-stretch">
+                <Button asChild size="lg" className="h-auto max-w-full whitespace-normal py-3 text-center">
+                  <Link to="/contact">{t.home.ctaContact}<ArrowRight aria-hidden="true" /></Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-auto max-w-full whitespace-normal border-accent/40 py-3 text-center">
+                  <a href={wa} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" />{t.home.ctaWa}</a>
+                </Button>
+              </div>
             </div>
-            <p className="max-w-2xl leading-relaxed text-muted-foreground">{t.home.trustDesc}</p>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="container-site py-14 md:py-20">
-        <Reveal>
-          <div className="cta-panel">
-            <h2 className="font-display text-2xl font-bold md:text-4xl">{t.home.finalTitle}</h2>
-            <p className="mt-3 text-muted-foreground">{t.home.finalDesc}</p>
-            <Link to="/contact" className="btn-primary mt-8">{t.home.finalCta}</Link>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </section>
     </>
   );
