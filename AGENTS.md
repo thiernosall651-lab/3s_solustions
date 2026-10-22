@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Homepage-only sections stay in `src/routes/index.tsx` and their copy in the existing `home` translation dictionaries, so other routes and shared site behavior remain unchanged.
