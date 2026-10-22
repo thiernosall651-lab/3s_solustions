@@ -17,8 +17,8 @@ export const Route = createFileRoute("/")({
 
 const serviceIcons = [Globe, LayoutDashboard, Bot] as const;
 const team = [
-  { name: "Thierno", image: teamThierno },
-  { name: "Abdourahamane", image: teamAbdourahamane },
+  { name: "Mr Sall", image: teamThierno, altKey: "thierno" },
+  { name: "Mr Sow", image: teamAbdourahamane, altKey: "abdourahamane" },
 ] as const;
 
 /** Portrait ovale avec arcs décoratifs (accent + gris), inspiré des pages « équipe » d'agences. */
@@ -245,7 +245,7 @@ function Index() {
                 <article className="text-center">
                   <OvalPortrait
                     src={member.image}
-                    alt={member.name === "Thierno" ? t.home.teamPhotoAltThierno : t.home.teamPhotoAltAbdourahamane}
+                    alt={member.altKey === "thierno" ? t.home.teamPhotoAltThierno : t.home.teamPhotoAltAbdourahamane}
                   />
                   <h3 className="mt-5 font-display text-xl font-semibold">{member.name}</h3>
                   <p className="mt-1 text-sm text-accent">{t.home.teamCaption}</p>
